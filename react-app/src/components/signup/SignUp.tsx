@@ -60,7 +60,6 @@ export const SignUp: React.FC = () => {
 
         onSubmit: values => {
             if (values.password === values.confirmPassword) {
-                // dispatch(registerTC(values.email, values.password));
                 dispatch(
                     signUpTC({
                         username: values.username,
@@ -68,7 +67,6 @@ export const SignUp: React.FC = () => {
                         password: values.password,
                     }),
                 );
-                console.log(values);
             }
         },
     });
