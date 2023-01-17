@@ -33,7 +33,7 @@ export const App = () => {
             <Container fixed>
                 <Routes>
                     <Route
-                        path="users/register"
+                        path="registration"
                         element={
                             <WithLayout>
                                 <MainPage />

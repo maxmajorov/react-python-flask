@@ -11,7 +11,7 @@ export const authAPI = {
     // },
 
     signUp(data: SignUpPayloadType) {
-        return instance.post('users/register', data);
+        return instance.post('api/v1/registration', data);
     },
 
     // login(data: LoginPayloadType) {

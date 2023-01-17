@@ -1,19 +1,23 @@
 from datetime import datetime
-
-import json
+from app import db
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
-
 class Users(db.Model):
+
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(64), nullable=True)
-    password = db.Column(db.Text())
-    jwt_auth_active = db.Column(db.Boolean())
+    username = db.Column(db.String(32), nullable=False) #обязательно для заполнения
+    email = db.Column(db.String(50), unique=True) #уникальное поле
+    password = db.Column(db.String(64), nullable=True)
+    # jwt_auth_active = db.Column(db.Boolean())
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    def __init__(self, username, email, password, date_joined):
+       self.username = username
+       self.email = email
+       self.password = password
+       self.date_joined = date_joined
 
     def __repr__(self):
         return f"User {self.username}"
@@ -47,6 +51,7 @@ class Users(db.Model):
     @classmethod
     def get_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
+      
     
     @classmethod
     def get_by_username(cls, username):

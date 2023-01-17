@@ -15,6 +15,7 @@ import style from './SignUp.module.scss';
 import Link from '@mui/material/Link';
 import { useDispatch } from 'react-redux';
 import { signUpTC } from '../../store/reducers/auth-reducer';
+import { instance } from '../../api/api-instance';
 
 export const SignUp: React.FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -68,6 +69,8 @@ export const SignUp: React.FC = () => {
                     }),
                 );
             }
+
+            // instance.get('api/v1/login');
         },
     });
 
